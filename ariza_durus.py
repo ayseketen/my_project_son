@@ -15,7 +15,7 @@ def run_ariza_durus():
     response = requests.get(url)
     data = BytesIO(response.content)
 
-    df_all = pd.read_excel(data)
+    df_all = pd.read_csv(data)
     df = df_all[df_all["AKTIVITEKODU"] == 2]
     df["ARIZA_TURU"] = df.apply(
         lambda row: row["ARIZA"] if pd.notnull(row["ARIZA"]) and str(row["ARIZA"]).strip() != "" else row["ARIZA2"],
