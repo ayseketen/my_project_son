@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import requests
+from io import BytesIO
 from style import apply_custom_styles  # Ortak stil dosyası
 def run_ariza_durus():
     
@@ -10,7 +12,10 @@ def run_ariza_durus():
     apply_custom_styles()
     # csv dosyasını yükle
     url = "https://drive.google.com/uc?id=1W4yLakTlMPAtyAYPUQeXdJXsWx48QtVd&export=download"
-    df_all = pd.read_csv(url) 
+    response = requests.get(url)
+    data = BytesIO(response.content)
+
+    df_all = pd.read_excel(data)
     df = df_all[df_all["AKTIVITEKODU"] == 2]
     df["ARIZA_TURU"] = df.apply(
         lambda row: row["ARIZA"] if pd.notnull(row["ARIZA"]) and str(row["ARIZA"]).strip() != "" else row["ARIZA2"],

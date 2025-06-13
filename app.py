@@ -1,13 +1,18 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import requests
+from io import BytesIO
 from style import apply_custom_styles  # Ortak stil dosyası
 def run_app():
     
     apply_custom_styles()
     # Excel dosyası yükleniyor
     url = "https://drive.google.com/uc?id=17j8gqcXKOytpifMmSfcoZF2Y6ApUxO2E&export=download"
-    df = pd.read_csv(url)
+    response = requests.get(url)
+    data = BytesIO(response.content)
+
+    df = pd.read_excel(data)
 
     # Filtreler
     st.sidebar.markdown('<div class="sidebar-title">🔍 Filtreler</div>', unsafe_allow_html=True)
