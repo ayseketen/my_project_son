@@ -12,7 +12,7 @@ def run_app():
     response = requests.get(url)
     data = BytesIO(response.content)
 
-    df = pd.read_excel(data)
+    df = pd.read_csv(data)
 
     # Filtreler
     st.sidebar.markdown('<div class="sidebar-title">🔍 Filtreler</div>', unsafe_allow_html=True)
