@@ -9,10 +9,7 @@ def run_app():
     apply_custom_styles()
     # Excel dosyası yükleniyor
     url = "https://drive.google.com/uc?id=17j8gqcXKOytpifMmSfcoZF2Y6ApUxO2E&export=download"
-    response = requests.get(url)
-    data = BytesIO(response.content)
-
-    df = pd.read_csv(data)
+    df = pd.read_csv(url)
 
     # Filtreler
     st.sidebar.markdown('<div class="sidebar-title">🔍 Filtreler</div>', unsafe_allow_html=True)
