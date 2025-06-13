@@ -6,8 +6,8 @@ def run_app():
     
     apply_custom_styles()
     # Excel dosyası yükleniyor
-    dosya_adi = "personel.xlsx"
-    df = pd.read_excel(dosya_adi)
+    url = "https://drive.google.com/uc?id=17j8gqcXKOytpifMmSfcoZF2Y6ApUxO2E&export=download"
+    df = pd.read_csv(url)
 
     # Filtreler
     st.sidebar.markdown('<div class="sidebar-title">🔍 Filtreler</div>', unsafe_allow_html=True)
