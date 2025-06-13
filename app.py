@@ -22,7 +22,7 @@ def run_app():
         bolumler = df["BOLUM"].unique()
 
     bolum = st.sidebar.multiselect("🏭 Bölüm", ["Tümü"] + list(bolumler))
-
+    df["TARIH"] = pd.to_datetime(df["TARIH"])
     tarih_araligi = st.sidebar.date_input(
         "📅 Tarih Aralığı",
         [df["TARIH"].min().date(), df["TARIH"].max().date()]
