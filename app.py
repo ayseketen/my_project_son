@@ -2,14 +2,25 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import requests
+import pyodbc
 from io import BytesIO
 from style import apply_custom_styles  # Ortak stil dosyası
 def run_app():
     
     apply_custom_styles()
     # Excel dosyası yükleniyor
-    url = "https://drive.google.com/uc?id=17j8gqcXKOytpifMmSfcoZF2Y6ApUxO2E&export=download"
-    df = pd.read_csv(url)
+
+    secrets = st.secrets["database"]
+
+    conn = pyodbc.connect(
+        f"Driver={{SQL Server}};"
+        f"Server={secrets.server};"
+        f"Database={secrets.database};"
+        f"UID={secrets.username};"
+        f"PWD={secrets.password}"
+    )
+
+    df = pd.read_sql("SELECT * FROM AAAPERSONELPERFSSADE", conn)
 
     # Filtreler
     st.sidebar.markdown('<div class="sidebar-title">🔍 Filtreler</div>', unsafe_allow_html=True)
