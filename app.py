@@ -70,26 +70,13 @@ def run_app():
     df_grup2.columns = ["Ürün", "Toplam Üretilen Miktar"]
 
     # Pie chart: Performans tezgah bazlı
-    toplam_yapilan = filtered_df.groupby("TEZGAHISIM")["PERFORMANS"].mean().round(2).reset_index()
-    fig1 = px.pie(
-        toplam_yapilan, 
-        values="PERFORMANS", 
-        names="TEZGAHISIM", 
-        hole=0.4
-    )
 
-    fig1.update_layout(
-        height=600,
-        width=800,
-        legend=dict(
-            orientation="v",
-            yanchor="middle",
-            y=0.5,
-            xanchor="left",
-            x=1.05
-        ),
-        margin=dict(l=0, r=0, t=50, b=50)
+    performans_ort = filtered_df.groupby(["TEZGAHISIM"])["PERFORMANS"].mean().round(2).reset_index()
+   
+    fig1 = px.bar(
+        performans_ort, x="TEZGAHISIM", y="PERFORMANS"
     )
+    fig1.update_traces(textposition='outside')
 
     # Bar chart: Performans ürün bazlı
     performans_ort = filtered_df.groupby(["URUN_KODU", "URUN_ADI"])["PERFORMANS"].mean().round(2).reset_index()
