@@ -10,17 +10,11 @@ def run_app():
     apply_custom_styles()
     # Excel dosyası yükleniyor
 
-    secrets = st.secrets["database"]
+    sheet_id = "https://docs.google.com/spreadsheets/d/"1QmPYw6dw5Qy0xf3Dl1z_4FBy4mriA5as"
+    sheet_name ="Sayfa1"
+    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
-    conn = pyodbc.connect(
-        f"Driver={{SQL Server}};"
-        f"Server={secrets.server};"
-        f"Database={secrets.database};"
-        f"UID={secrets.username};"
-        f"PWD={secrets.password}"
-    )
-
-    df = pd.read_sql("SELECT * FROM AAAPERSONELPERFSSADE", conn)
+    df = pd.read_csv(url)
 
     # Filtreler
     st.sidebar.markdown('<div class="sidebar-title">🔍 Filtreler</div>', unsafe_allow_html=True)
