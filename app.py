@@ -10,7 +10,7 @@ def run_app():
     apply_custom_styles()
     # Excel dosyası yükleniyor
 
-    sheet_id = "https://docs.google.com/spreadsheets/d/"1QmPYw6dw5Qy0xf3Dl1z_4FBy4mriA5as"
+    sheet_id = "1QmPYw6dw5Qy0xf3Dl1z_4FBy4mriA5as"
     sheet_name ="Sayfa1"
     url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
