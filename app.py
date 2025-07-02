@@ -10,9 +10,9 @@ def run_app():
     apply_custom_styles()
     # Excel dosyası yükleniyor
  
-    sheet_id = "1QmPYw6dw5Qy0xf3Dl1z_4FBy4mriA5as"
-    sheet_name = "Sayfa1"
-    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
+
+    file_id = "1S1JOtHeZi8-6q9UZUkrSt2tyOYV4hqJp"
+    url = f"https://drive.google.com/uc?id={file_id}&export=download"
     df = pd.read_csv(url)
 
     # Filtreler
