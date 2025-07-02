@@ -5,6 +5,7 @@ import requests
 import pyodbc
 from io import BytesIO
 from style import apply_custom_styles  # Ortak stil dosyası
+import time
 def run_app():
     
     apply_custom_styles()
@@ -12,7 +13,8 @@ def run_app():
  
 
     file_id = "1S1JOtHeZi8-6q9UZUkrSt2tyOYV4hqJp"
-    url = f"https://drive.google.com/uc?id={file_id}&export=download"
+    timestamp = int(time.time())
+    url = f"https://drive.google.com/uc?id={file_id}&export=download&ts={timestamp}"
     df = pd.read_csv(url)
 
     # Filtreler
