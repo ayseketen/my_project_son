@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from style import apply_custom_styles  # Ortak stil dosyası
+import time
 def run_ariza_durus():
     
     # Sayfa genişliği artırıldı
@@ -9,10 +10,13 @@ def run_ariza_durus():
 
     apply_custom_styles()
     # csv dosyasını yükle
-    url = "https://drive.google.com/uc?id=1W4yLakTlMPAtyAYPUQeXdJXsWx48QtVd&export=download"
 
-    df_all = pd.read_csv(url)
-    df = df_all[df_all["AKTIVITEKODU"] == 2]
+
+    file_id = "1b0fLGSnsxTf4URrk81vY8jJNGoCRs7Q8"
+    timestamp = int(time.time())
+    url = f"https://drive.google.com/uc?id={file_id}&export=download&ts={timestamp}"
+    df = pd.read_csv(url)
+
     df["ARIZA_TURU"] = df.apply(
         lambda row: row["ARIZA"] if pd.notnull(row["ARIZA"]) and str(row["ARIZA"]).strip() != "" else row["ARIZA2"],
         axis=1
